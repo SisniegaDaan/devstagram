@@ -4,14 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Devstagram - @yield('titulo')</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
-        <style></style>
+        @vite('resources/css/app.css')
 
     </head>
     <body class="antialiased">
@@ -20,10 +20,11 @@
             <a href="/nosotros">Nosotros</a>
             <a href="/tienda">Tienda</a>
         </nav>
-        <h1>@yield('titulo')</h1>
+
+        <h1 class="text-4xl font-extrabold">@yield('titulo')</h1>
 
         <hr>
-        
+
         <div>@yield('contenido')</div>
     </body>
 </html>
