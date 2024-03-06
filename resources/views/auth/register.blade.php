@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('titulo')
-Nosotros
+Crea tu cuenta
 @endsection
 
 @section('contenido')
-<p>Cuerpo de la página nosotros</p>
+<p>Formulario</p>
 @endsection
