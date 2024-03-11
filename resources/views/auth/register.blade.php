@@ -5,36 +5,68 @@ Crea tu cuenta
 @endsection
 
 @section('contenido')
-    <div class="md:flex">
-        <div class="md:w-1/2">
-            <p>Imagen aquí</p>
+    <div class="md:flex md:justify-center md:gap-10 md:items-center">
+        <div class="md:w-6/12 max-w-20">
+            <img src="{{ asset('img/registrar.jpg') }}" alt="Imagen registrar">
         </div>
-        <div class="md:w-1/2">
-            <form>
+        <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
+            <form action="/crear-cuenta" method="POST">
+                @csrf
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
                         Nombre
                     </label>
-                    <input id="name" name="name" type="text" placeholder="Tu nombre" class="border p-3 w-full rounded-lg"/>
+                    <input 
+                        id="name" 
+                        name="name" 
+                        type="text" 
+                        placeholder="Tu nombre" 
+                        class="border p-3 w-full rounded-lg"/>
                 </div>
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
                         Username
                     </label>
-                    <input id="username" name="username" type="text" placeholder="Tu username" class="border p-3 w-full rounded-lg"/>
+                    <input 
+                        id="username" 
+                        name="username" 
+                        type="text" 
+                        placeholder="Tu username" 
+                        class="border p-3 w-full rounded-lg"/>
                 </div>
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
                         Email
                     </label>
-                    <input id="email" name="email" type="text" placeholder="Tu email" class="border p-3 w-full rounded-lg"/>
+                    <input 
+                        id="email" 
+                        name="email" 
+                        type="text" 
+                        placeholder="Tu email" 
+                        class="border p-3 w-full rounded-lg"/>
                 </div>
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
                         Contraseña
                     </label>
-                    <input id="password" name="password" type="text" placeholder="Crea tu contraseña" class="border p-3 w-full rounded-lg"/>
+                    <input 
+                        id="password" 
+                        name="password" 
+                        type="password" 
+                        placeholder="Crea tu contraseña" 
+                        class="border p-3 w-full rounded-lg"/>
                 </div>
+                <div class="mb-5">
+                    <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
+                        Confirma tu contraseña
+                    </label>
+                    <input id="password_confirmation" name="password_confirmation" type="password" placeholder="Confirma tu contraseña" class="border p-3 w-full rounded-lg"/>
+                </div>
+                <input 
+                    type="submit"
+                    value="Crear cuenta"
+                    class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer 
+                    uppercase font-bold w-full p-3 text-white rounded-lg"/>
             </form>
 
         </div>
