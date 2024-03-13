@@ -6,11 +6,11 @@ Crea tu cuenta
 
 @section('contenido')
     <div class="md:flex md:justify-center md:gap-10 md:items-center">
-        <div class="md:w-6/12 max-w-20">
+        <div class="md:w-6/12">
             <img src="{{ asset('img/registrar.jpg') }}" alt="Imagen registrar">
         </div>
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            <form action="/crear-cuenta" method="POST">
+            <form action="{{ route('register') }}" method="POST" novalidate>
                 @csrf
                 <div class="mb-5">
                     <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -21,18 +21,29 @@ Crea tu cuenta
                         name="name" 
                         type="text" 
                         placeholder="Tu nombre" 
-                        class="border p-3 w-full rounded-lg"/>
+                        value="{{ old('name') }}"
+                        class="border p-3 w-full rounded-lg 
+                        @error('name') border-red-500 @enderror"/>
+
+                    @error('name')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
-                    <label for="name" class="mb-2 block uppercase text-gray-500 font-bold">
+                    <label for="username" class="mb-2 block uppercase text-gray-500 font-bold">
                         Username
                     </label>
                     <input 
                         id="username" 
                         name="username" 
                         type="text" 
-                        placeholder="Tu username" 
+                        placeholder="Tu username"
+                        value="{{ old('username') }}"
                         class="border p-3 w-full rounded-lg"/>
+                    
+                    @error('username')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -41,9 +52,14 @@ Crea tu cuenta
                     <input 
                         id="email" 
                         name="email" 
-                        type="text" 
-                        placeholder="Tu email" 
+                        type="email" 
+                        placeholder="Tu email"
+                        value="{{ old('email') }}"
                         class="border p-3 w-full rounded-lg"/>
+
+                    @error('email')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
@@ -53,8 +69,12 @@ Crea tu cuenta
                         id="password" 
                         name="password" 
                         type="password" 
-                        placeholder="Crea tu contraseña" 
+                        placeholder="Crea tu contraseña"
                         class="border p-3 w-full rounded-lg"/>
+                    
+                    @error('password')
+                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-5">
                     <label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
