@@ -11,9 +11,22 @@ class LoginController extends Controller
         return view("auth/login");
     }
 
-    public function post(Request $request)
+    public function store(Request $request)
     {
-        auth()->attempt($request->only("email","password"));
+
+        // Validación de formulario
+        $this->validate($request, [
+            "email" => ["required", "email"],
+            "password" => ["required"]
+        ]);
+
+        // Intendo de validación
+        // Si no puede autenticarse
+        if(!auth()->attempt($request->only('email', 'password')))
+        {
+            return back()->with('error','Credenciales incorrectas. Revisa tu email y contraseña.');
+        };
+
         return redirect()->route('posts.index');
     }
 }
