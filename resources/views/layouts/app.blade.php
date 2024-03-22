@@ -20,8 +20,17 @@
             <div class="container mx-auto flex justify-between">
                 <h1 class="text-3xl font-black">Devstagram</h1>
                 <nav class="flex gap-4 items-center">
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="/">Login</a>
-                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register')}}">Crear cuenta</a>
+
+                    @auth
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="#">Hola: <span class="font-normal">{{auth()->user()->username}}</span></a>
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="#">Cerrar Sesión</a>
+                    @endauth
+                    
+                    @guest
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('login') }}">Login</a>
+                        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">Crear cuenta</a>                        
+                    @endguest
+        
                 </nav>
             </div>
         </header>
