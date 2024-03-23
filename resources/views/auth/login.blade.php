@@ -50,6 +50,11 @@ Inicia sesión
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                 @enderror
             </div>
+            <div class="mb-5">
+                <input type="checkbox" name="remember">
+                    <label for="" class="text-gray-500">Mantener mi sesión abierta</label>
+                </input>
+            </div>
             <input 
                 type="submit"
                 value="Iniciar sesión"
