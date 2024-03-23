@@ -20,11 +20,10 @@ class LoginController extends Controller
             "password" => ["required"]
         ]);
 
-        dd($request);
 
         // Intendo de validación
         // Si no puede autenticarse
-        if(!auth()->attempt($request->only('email', 'password')))
+        if(!auth()->attempt($request->only('email', 'password'), $request->remember))
         {
             return back()->with('error','Credenciales incorrectas. Revisa tu email y contraseña.');
         };
