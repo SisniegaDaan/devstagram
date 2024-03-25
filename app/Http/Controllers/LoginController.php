@@ -28,6 +28,9 @@ class LoginController extends Controller
             return back()->with('error','Credenciales incorrectas. Revisa tu email y contraseña.');
         };
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', 
+        [
+            'user'=>auth()->user()->username
+        ]);
     }
 }
