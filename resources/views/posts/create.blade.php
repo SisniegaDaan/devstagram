@@ -3,11 +3,17 @@
 @section('titulo')
 @endsection
 
+@push('dropzone')
+<link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
+
 @section('contenido')
-<div class="md:flex">
-    <div class="md:w-7/12">
-        <form action="/publicar" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex
-        flex-col justify-center items-center"></form>
+<div class="flex flex-col justify-around md:flex-row">
+    <div class="mb-3 md:w-5/12 md:mb-0">
+        <form action="{{ route('imagenes.store') }}" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex
+        flex-col justify-center items-center">
+            @csrf
+        </form>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-xl md:w-5/12">
         <form action="#" method="POST" novalidate>
