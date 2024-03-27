@@ -11,7 +11,7 @@
 <div class="flex flex-col justify-around md:flex-row">
     <div class="mb-3 md:w-5/12 md:mb-0">
         <form action="{{ route('imagenes.store') }}" id="dropzone" class="dropzone border-dashed border-2 w-full h-96 rounded flex
-        flex-col justify-center items-center">
+        flex-col justify-center items-center bg-gray-100 font-bold">
             @csrf
         </form>
     </div>

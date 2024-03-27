@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+use Intervention\Image\Laravel\Facades\Image;
+
+
 class ImagenController extends Controller
 {
     public function store(Request $request)
@@ -14,11 +20,13 @@ class ImagenController extends Controller
         $nombreImagen = Str::uuid() . "." . $imagen->extension();
 
         // Ajustando la imagen a una forma cuadrada con Intervention
-        $imagenFinal = Image::make($imagen);
-        $imagenFinal->fit(1000, 1000);
+        $imgManager = new ImageManager(new Driver());
+        $imagenFinal = $imgManager->create(1000, 1000);
+        $imagenFinal = $imgManager->read($imagen);
 
         // Guardamos el archivo dentro de un path (public/uploads)
-        $imagen->move(public_path("/uploads"));
+        $imagenPth = public_path('uploads') . "/" . $nombreImagen; 
+        $imagenFinal->save($imagenPth);
         return response()->json($nombreImagen);
     }
 }
