@@ -25,7 +25,7 @@ class ImagenController extends Controller
         $imagenFinal = $imgManager->read($imagen);
 
         // Guardamos el archivo dentro de un path (public/uploads)
-        $imagenPth = public_path('uploads') . "/" . $nombreImagen; 
+        $imagenPth = public_path('uploads') . "/" . $nombreImagen;
         $imagenFinal->save($imagenPth);
         return response()->json($nombreImagen);
     }
