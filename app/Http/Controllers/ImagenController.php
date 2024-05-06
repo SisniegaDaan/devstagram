@@ -16,17 +16,19 @@ class ImagenController extends Controller
     public function store(Request $request)
     {
         // Creando un nombre identificador al archivo
-        $imagen = $request->file("file");
-        $nombreImagen = Str::uuid() . "." . $imagen->extension();
+        $imagenFile = $request->file("file");
+        $nombreImagen = Str::uuid() . "." . $imagenFile->extension();
 
         // Ajustando la imagen a una forma cuadrada con Intervention
-        $imgManager = new ImageManager(new Driver());
-        $imagenFinal = $imgManager->create(1000, 1000);
-        $imagenFinal = $imgManager->read($imagen);
+        $manager = new ImageManager(new Driver());
+        $imagen = $manager->read($imagenFile);
+        $imagen->resize(1000, 1000);
 
         // Guardamos el archivo dentro de un path (public/uploads)
         $imagenPth = public_path('uploads') . "/" . $nombreImagen;
-        $imagenFinal->save($imagenPth);
-        return response()->json($nombreImagen);
+        $imagen->save($imagenPth);
+                
+        // save encoded image
+        return response()->json(["imagen" => $nombreImagen]);
     }
 }

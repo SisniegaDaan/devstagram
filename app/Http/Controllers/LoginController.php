@@ -25,6 +25,7 @@ class LoginController extends Controller
         // Si no puede autenticarse
         if(!auth()->attempt($request->only('email', 'password'), $request->remember))
         {
+            // Esto crea una session para mostrar errores en las vistas
             return back()->with('error','Credenciales incorrectas. Revisa tu email y contraseña.');
         };
 

@@ -16,8 +16,11 @@
         </form>
     </div>
     <div class="bg-white p-6 rounded-lg shadow-xl md:w-5/12">
-        <form action="#" method="POST" novalidate>
+        <form action="{{ route('posts.store') }}" method="POST" novalidate>
             @csrf
+
+            <!-- Session de error creada mediante la función back()->with() usada
+                 en el controlador de Login -->
             @if (session('error'))
                 <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
                     {{ session('error') }}
@@ -33,9 +36,11 @@
                     name="titulo" 
                     type="text" 
                     placeholder="Título de la publicación"
-                    value="{{ old('email') }}"
+                    value="{{ old('titulo') }}"
                     class="border p-3 w-full rounded-lg"/>
-
+                
+                <!-- Una herramienta de error complementada mediante 
+                     la validación de campos -->
                 @error('titulo')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                 @enderror
@@ -52,6 +57,13 @@
                     class="border p-3 w-full rounded-lg"></textarea>
                 
                 @error('descripcion')
+                    <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+                @enderror
+            </div>
+            
+            <div class="mb-5">
+                <input id="imagen" name="imagen" type="hidden" value={{ old('imagen') }}>
+                @error('imagen')
                     <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                 @enderror
             </div>
