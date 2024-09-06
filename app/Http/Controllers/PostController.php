@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class PostController extends Controller
+ class PostController extends Controller
 {
     public function __construct()
     {

@@ -8,6 +8,9 @@ use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PerfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +23,7 @@ use App\Http\Controllers\ComentarioController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
-});
+Route::get('/', HomeController::class) -> name('home');
 
 Route::get('/register', [RegisterController::class, 'index']) -> name('register');
 Route::post('/register', [RegisterController::class, 'store']);
@@ -30,6 +31,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/login', [LoginController::class,'index']) -> name('login');
 Route::post('/login', [LoginController::class,'store']);
 Route::post('/logout', [LogoutController::class, 'store']) -> name('logout');
+
+// Agregado recientemente
+Route::get('/profile-edit', [PerfilController::class, 'index']) -> name('perfil.index');
+Route::post('/profile-edit', [PerfilController::class, 'store']) -> name('perfil.store');
 
 Route::get('/{user:username}', [PostController::class, 'index']) -> name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create']) -> name('posts.create');
@@ -44,3 +49,5 @@ Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy']) -> name
 
 Route::post('/imagenes', [ImagenController::class, 'store']) -> name('imagenes.store');
 
+Route::post('/{user:username}/follow', [FollowerController::class, 'store']) -> name('users.follow');
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy']) -> name('users.unfollow');
