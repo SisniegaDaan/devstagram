@@ -14,10 +14,11 @@
         <!-- Styles -->
         @vite('resources/css/app.css')
         @vite('resources/js/app.js')
-        
 
+        <!-- Livewire -->
+        @livewireStyles
     </head>
-    <body class="bg-gray-100">
+    <body class="bg-gray-100 flex flex-col min-h-screen">
         <header class="p-5 border-b bg-white shadow">
             <div class="container mx-auto flex justify-between">
                 <a href="{{ route('home') }}" class="text-3xl font-black">Devstagram</a>
@@ -48,7 +49,7 @@
             </div>
         </header>
 
-        <main class="container mx-auto mt-10">
+        <main class="container mx-auto my-10 flex-1">
             <h2 class="font-black text-center text-3xl mb-10">@yield('titulo')</h2>
             @yield('contenido')
         </main>
@@ -56,5 +57,7 @@
         <footer class="text-center p-5 text-gray-500 font-bold uppercase">
             Devstagram - todos los derechos reservados
         </footer>
+
+        @livewireScripts
     </body>
 </html>

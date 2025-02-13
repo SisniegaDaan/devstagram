@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\File;
     {
         // Realizando cconsulta de posts del usuario para
         // mostrarlos en la vista dashboard.
-        $userPosts = Post::where('user_id', $user->id)->paginate(6);
+        $userPosts = Post::where('user_id', $user->id)->latest()->paginate(6);
         
         return view('dashborad', [
             'user' => $user,

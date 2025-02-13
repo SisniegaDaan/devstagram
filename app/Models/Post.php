@@ -24,7 +24,7 @@ class Post extends Model
     // Función que relaciona el modelo Post con el modelo User (Many2one)
     public function user()
     {
-        return $this->belongsTo(User::class)->select(['name', 'username']);
+        return $this->belongsTo(User::class); //->select(['name', 'username']);
     }
 
     // Función que relaciona el modelo Post con el modelo Comentario (One2many)
